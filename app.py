@@ -1,3 +1,4 @@
+import pyttsx3
 from tkinter import *
 from PIL import Image,ImageTk
 from googletrans import Translator
@@ -32,9 +33,17 @@ def translate():
     a = t.translate(INPUT, src='vi', dest='en')
     b=a.text 
     box2.insert(END,b)
+def speach():
+    SPEACH = box2.get(1.0,END)
+    e = pyttsx3.init()
+    e.say(SPEACH)
+    e.runAndWait()
+
 trans_button=Button(Button_frame,text='Dịch',height=2,width=10, font=(('Arial'),10,'bold'),bg='#303030',fg='#FFFFFF',command=translate)
 trans_button.place(x=20,y=300) 
 clear_button=Button(Button_frame,text='Xóa',height=2,width=10, font=(('Arial'),10,'bold'),bg='#303030',fg='#FFFFFF',command=clear)
-clear_button.place(x=140,y=300)  
+clear_button.place(x=140,y=300)
+clear_button=Button(Button_frame,text='Đọc',height=2,width=10, font=(('Arial'),10,'bold'),bg='#303030',fg='#FFFFFF',command=speach)
+clear_button.place(x=260,y=300)  
     
 root.mainloop()
